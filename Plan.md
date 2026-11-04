@@ -10,7 +10,7 @@
 
 ## Fase 0 — Preparación (5 min, antes de empezar)
 
-- [ ] Verificar .NET SDK: `dotnet --version` (debe mostrar 8.x)
+- [x] Verificar .NET SDK: `dotnet --version` (debe mostrar 8.x)
 - [ ] Verificar Azure CLI: `az --version`
 - [ ] Iniciar sesión en Azure: `az login`
 - [ ] Confirmar que tienes una suscripción activa: `az account show`
