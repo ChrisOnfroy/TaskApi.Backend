@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TaskApi.Api</name>
+    </assembly>
+    <members>
+        <member name="T:TaskApi.Api.Controllers.TasksController">
+            <summary>
+            Controlador REST para el recurso Tasks.
+            No contiene lógica de negocio: solo recibe solicitudes HTTP, delega en ITaskService
+            y devuelve el código de estado HTTP correspondiente.
+            </summary>
+        </member>
+        <member name="M:TaskApi.Api.Controllers.TasksController.#ctor(TaskApi.Application.Features.Tasks.Services.ITaskService)">
+            <summary>
+            Controlador REST para el recurso Tasks.
+            No contiene lógica de negocio: solo recibe solicitudes HTTP, delega en ITaskService
+            y devuelve el código de estado HTTP correspondiente.
+            </summary>
+        </member>
+        <member name="M:TaskApi.Api.Controllers.TasksController.GetAll(TaskApi.Application.Features.Tasks.DTOs.GetTasksRequest,System.Threading.CancellationToken)">
+            <summary>
+            Lista las tareas de forma paginada, con filtros opcionales por estado y prioridad.
+            </summary>
+        </member>
+        <member name="M:TaskApi.Api.Controllers.TasksController.GetById(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Obtiene una tarea por su identificador único.
+            </summary>
+        </member>
+        <member name="M:TaskApi.Api.Controllers.TasksController.Create(TaskApi.Application.Features.Tasks.DTOs.CreateTaskRequest,System.Threading.CancellationToken)">
+            <summary>
+            Crea una nueva tarea en estado Pending.
+            </summary>
+        </member>
+        <member name="M:TaskApi.Api.Controllers.TasksController.Update(System.Guid,TaskApi.Application.Features.Tasks.DTOs.UpdateTaskRequest,System.Threading.CancellationToken)">
+            <summary>
+            Actualiza el título, descripción, prioridad y fecha de vencimiento de una tarea existente.
+            </summary>
+        </member>
+        <member name="M:TaskApi.Api.Controllers.TasksController.Start(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Inicia una tarea (transición de estado a InProgress).
+            </summary>
+        </member>
+        <member name="M:TaskApi.Api.Controllers.TasksController.Complete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Marca una tarea como completada (transición de estado a Completed).
+            </summary>
+        </member>
+        <member name="M:TaskApi.Api.Controllers.TasksController.Reopen(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Reabre una tarea completada (transición de estado a Pending).
+            </summary>
+        </member>
+        <member name="M:TaskApi.Api.Controllers.TasksController.Delete(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Elimina permanentemente una tarea.
+            </summary>
+        </member>
+        <member name="T:TaskApi.Api.Extensions.PresentationServiceExtensions">
+            <summary>
+            Métodos de extensión para organizar el registro de servicios propios de la capa Presentation (API).
+            Mantiene Program.cs limpio y fácil de leer.
+            </summary>
+        </member>
+        <member name="T:TaskApi.Api.Middleware.ExceptionHandlingMiddleware">
+            <summary>
+            Middleware global de manejo de excepciones.
+            Intercepta cualquier excepción no controlada y la traduce a una respuesta estándar
+            RFC 7807 (ProblemDetails / ValidationProblemDetails) con el código HTTP apropiado.
+            </summary>
+        </member>
+        <member name="M:TaskApi.Api.Middleware.ExceptionHandlingMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Logging.ILogger{TaskApi.Api.Middleware.ExceptionHandlingMiddleware})">
+            <summary>
+            Middleware global de manejo de excepciones.
+            Intercepta cualquier excepción no controlada y la traduce a una respuesta estándar
+            RFC 7807 (ProblemDetails / ValidationProblemDetails) con el código HTTP apropiado.
+            </summary>
+        </member>
+        <member name="T:Program">
+            <summary>
+            Auto-generated public partial Program class for top-level statement apps.
+            </summary>
+        </member>
+    </members>
+</doc>

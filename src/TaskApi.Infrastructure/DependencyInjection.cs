@@ -19,10 +19,20 @@ public static class DependencyInjection
             ?? throw new InvalidOperationException("Falta la cadena de conexión 'DefaultConnection'.");
 
         // AddDbContext registra ApplicationDbContext como Scoped (una instancia por petición HTTP).
+        // Soporta PostgreSQL en local (Host=...) y Azure SQL Database en la nube (Server=...).
         services.AddDbContext<ApplicationDbContext>(options =>
-            options
-                .UseNpgsql(connectionString, npgsql => npgsql.EnableRetryOnFailure(maxRetryCount: 3))
-                .UseSnakeCaseNamingConvention());
+        {
+            if (connectionString.Contains("Host=", StringComparison.OrdinalIgnoreCase))
+            {
+                options.UseNpgsql(connectionString, npgsql => npgsql.EnableRetryOnFailure(maxRetryCount: 3));
+            }
+            else
+            {
+                options.UseSqlServer(connectionString, sql => sql.EnableRetryOnFailure(maxRetryCount: 3));
+            }
+
+            options.UseSnakeCaseNamingConvention();
+        });
 
         // Misma instancia del DbContext dentro de la petición => repositorio y UoW comparten el tracking.
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
